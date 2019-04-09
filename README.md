@@ -1,7 +1,7 @@
 Sola-grab
 =============
 
-More information about the archiving project can be found on the ArchiveTeam wiki: [{{sola-grab}}](https://www.archiveteam.org/index.php?title=Sola.ai})
+More information about the archiving project can be found on the ArchiveTeam wiki: [{{sola-grab}}](https://www.archiveteam.org/index.php?title=Sola.ai)
 
 Setup instructions
 =========================
