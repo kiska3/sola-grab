@@ -57,7 +57,17 @@ allowed = function(url, parenturl)
   if string.match(url, "^https?://s3%.amazonaws%.com/")
   or string.match(url, "^https?://api%.solacore%.net/")
   or string.match(url, "^https?://cdn%.solacore%.net/")
-  or string.match(url, "^https?://sola.ai/" .. item_value) then
+  then
+    return true
+  end
+  
+  if string.match(url, "^https?://sola%.ai/posts") then
+    if string.match(url, "^https?://sola%.ai/" .. item_value) then
+      return true
+    end
+  end
+  
+  if string.match(url, "^https?://sola%.ai/" .. item_value) then
     return true
   end
   
@@ -185,6 +195,12 @@ wget.callbacks.httploop_result = function(url, err, http_stat)
     downloaded[string.gsub(url["url"], "https?://", "http://")] = true
   end
 
+  if (status_code >=300 and status_code <= 399) then
+    local newloc = string.match(http_stat["newloc"], "^([^#]+)")
+    if string.match(newloc, "^https?://sola.ai/" .. item_value) then
+      wget.actions.CONTINUE
+    end
+    
   if abortgrab == true then
     io.stdout:write("ABORTING...\n")
     return wget.actions.ABORT
