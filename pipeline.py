@@ -74,7 +74,7 @@ VERSION = '20190402.02'
 #    USER_AGENT = random.choice(f.read().splitlines()).strip()
 USER_AGENT = 'ArchiveTeam'
 # Insert project
-TRACKER_ID = 'sola
+TRACKER_ID = 'sola'
 TRACKER_HOST = 'server5.kiska.pw:9080'
 
 
