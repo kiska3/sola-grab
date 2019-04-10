@@ -191,10 +191,11 @@ wget.callbacks.httploop_result = function(url, err, http_stat)
     io.stdout:write("Server returned "..http_stat.statcode.." ("..err.."). Sleeping.\n")
     io.stdout:flush()
     os.execute("sleep 1")
-    if string.match(url["url"], "^https?://api%.solacore%.net/") then 
-        io.stdout:write("Ignoring 400 error")
-        io.stdout:flush()
-        return wget.actions.CONTINUE
+    if string.match(url["url"], "^https?://api%.solacore%.net/users/items") then 
+      downloaded[url["url"]] = true
+      io.stdout:write("Ignoring 400 error\n")
+      io.stdout:flush()
+      return wget.actions.CONTINUE
     end
     tries = tries + 1
     if tries >= 5 then
