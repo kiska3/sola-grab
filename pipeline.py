@@ -271,7 +271,7 @@ class WgetArgs(object):
 		#Insert project item code
         if item_type == 'profile':
            split_items = item_value.split(':')
-            for x in split_items:
+           for x in split_items:
                 wget_args.extend(['--warc-header', 'sola-profile: ' + x])
                 wget_args.append('http://sola.ai/{}'.format(x))
 
