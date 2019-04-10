@@ -273,7 +273,7 @@ class WgetArgs(object):
            split_items = item_value.split(':')
            for x in split_items:
                 wget_args.extend(['--warc-header', 'sola-profile: ' + x])
-                wget_args.append('http://sola.ai/{}'.format(x))
+                wget_args.append('https://sola.ai/{}'.format(x))
 
         
         if 'bind_address' in globals():
