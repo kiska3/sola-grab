@@ -196,7 +196,8 @@ wget.callbacks.httploop_result = function(url, err, http_stat)
     if string.match(newloc, "^https?://sola.ai/" .. item_value) then
       wget.actions.CONTINUE
     end
-    
+  end
+  
   if abortgrab == true then
     io.stdout:write("ABORTING...\n")
     return wget.actions.ABORT
