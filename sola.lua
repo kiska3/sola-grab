@@ -192,6 +192,8 @@ wget.callbacks.httploop_result = function(url, err, http_stat)
     io.stdout:flush()
     os.execute("sleep 1")
     if string.match(url["url"], "^https?://api%.solacore%.net/") then 
+        io.stdout:write("Ignoring 400 error")
+        io.stdout:flush()
         return wget.actions.CONTINUE
     end
     tries = tries + 1
