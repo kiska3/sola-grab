@@ -190,7 +190,7 @@ wget.callbacks.httploop_result = function(url, err, http_stat)
     io.stdout:write("Server returned "..http_stat.statcode.." ("..err.."). Sleeping.\n")
     io.stdout:flush()
     os.execute("sleep 1")
-    if string.match(url, "^https?://api%.solacore%.net/") then 
+    if string.match(url["url"], "^https?://api%.solacore%.net/") then 
         return wget.actions.CONTINUE
     end
     tries = tries + 1
