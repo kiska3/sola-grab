@@ -139,7 +139,7 @@ wget.callbacks.get_urls = function(file, url, is_css, iri)
       local data = html
       local uuid = string.match(html, "^https?://api%.solacore%.net/users/([^/]+)")
       if uuid ~= nil then
-          local nextpage = string.match(html, "/users/[^/]+/posts/%?limit=%d+&offset=%d+")
+          local nextpage = string.match(html, "/users/[^/]+/posts/%?limit=[%d+]&offset=[%d+]")
           local newurl = "https://api.solacore.net" .. nextpage 
           table.insert(urls, {url=newurl})
       end
