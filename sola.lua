@@ -139,7 +139,7 @@ wget.callbacks.get_urls = function(file, url, is_css, iri)
       local data = html
       local uuid = string.match(html, "^https?://api%.solacore%.net/users/([^/]+)")
       if uuid ~= nil then
-          local nextpage = string.match(html, "/users/[^/]+/posts/%?limit=[%d+]&offset=[%d+]")
+          local nextpage = string.match(html, "/users/[^/]+/posts/%?limit=%d+&offset=%d+")
           local newurl = "https://api.solacore.net" .. nextpage 
           table.insert(urls, {url=newurl})
       end
@@ -190,6 +190,9 @@ wget.callbacks.httploop_result = function(url, err, http_stat)
     io.stdout:write("Server returned "..http_stat.statcode.." ("..err.."). Sleeping.\n")
     io.stdout:flush()
     os.execute("sleep 1")
+    if string.match(url, "^https?://api%/solacore%.net/") then 
+        wget.actions.CONTINUE
+    end
     tries = tries + 1
     if tries >= 5 then
       io.stdout:write("\nI give up...\n")
