@@ -61,14 +61,10 @@ allowed = function(url, parenturl)
     return true
   end
   
-  if string.match(url, "^https?://sola%.ai/posts") then
-    if string.match(url, "^https?://sola%.ai/" .. item_value) then
+  if string.match(url, "^https?://sola%.ai/posts") or
+  string.match(url, "^https?://sola%.ai/" .. item_value) 
+  then
       return true
-    end
-  end
-  
-  if string.match(url, "^https?://sola%.ai/" .. item_value) then
-    return true
   end
   
   return false
