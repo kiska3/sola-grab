@@ -57,7 +57,7 @@ allowed = function(url, parenturl)
   if string.match(url, "^https?://s3%.amazonaws%.com/")
   or string.match(url, "^https?://api%.solacore%.net/")
   or string.match(url, "^https?://cdn%.solacore%.net/")
-  or string.match(url, "^https?://sola.ai/") then
+  or string.match(url, "^https?://sola.ai/" .. item_value) then
     return true
   end
   
