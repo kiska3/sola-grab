@@ -130,15 +130,19 @@ wget.callbacks.get_urls = function(file, url, is_css, iri)
     html = read_file(file)
     if string.match(url, "^https?://sola%.ai/[^/]+$") then
       local uuid = string.match(html, '"posts":{"([^"]+)')
-      local newurl = "https://api.solacore.net/users/" .. uuid .. "/posts/?limit=30&offset=30"
-      table.insert(urls, {url=newurl})
+      if uuid ~= nil then
+          local newurl = "https://api.solacore.net/users/" .. uuid .. "/posts/?limit=30&offset=30"
+          table.insert(urls, {url=newurl})
+      end
     end
     if string.match(url, "^https?://api%.solacore%.net/users/[^/]+") then
       local data = html
       local uuid = string.match(html, "^https?://api%.solacore%.net/users/([^/]+)")
-      local nextpage = string.match(html, "/users/[^/]+/posts/%?limit=[%d+]&offset=[%d+]")
-      local newurl = "https://api.solacore.net" .. nextpage 
-      table.insert(urls, {url=newurl})
+      if uuid ~= nil then
+          local nextpage = string.match(html, "/users/[^/]+/posts/%?limit=[%d+]&offset=[%d+]")
+          local newurl = "https://api.solacore.net" .. nextpage 
+          table.insert(urls, {url=newurl})
+      end
     end
     for newurl in string.gmatch(html, '([^"]+)') do
       checknewurl(newurl)
