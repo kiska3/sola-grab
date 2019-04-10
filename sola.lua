@@ -133,7 +133,12 @@ wget.callbacks.get_urls = function(file, url, is_css, iri)
       local uuid = string.match(html, '"posts":{"([^"]+)')
       if uuid ~= nil then
           local newurl = "https://api.solacore.net/users/" .. uuid .. "/posts/?limit=30&offset=30"
-          table.insert(urls, {url=newurl})
+          if string.match(newurl, "^https?://api%.solacore%.net/users/items/posts/%?limit=30&offset=30") then
+            io.stdout:write("Json has error, no concern\n")
+            io.stdout:flush()
+          else
+            table.insert(urls, {url=newurl})
+          end
       end
     end
     if string.match(url, "^https?://api%.solacore%.net/users/[^/]+") then
